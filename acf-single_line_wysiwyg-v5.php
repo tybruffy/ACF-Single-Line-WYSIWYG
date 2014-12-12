@@ -223,15 +223,11 @@ class acf_field_single_line_wysiwyg extends acf_field {
 	*/
 			
 	function format_value( $value, $post_id, $field ) {
-		
 		// bail early if no value
 		if( empty($value) ) {
 			return $value;
 		}
-		
-		// apply filters
-		$value = apply_filters( 'acf_the_content', $value );
-		
+				
 		// follow the_content function in /wp-includes/post-template.php
 		$value = str_replace(']]>', ']]&gt;', $value);
 	
