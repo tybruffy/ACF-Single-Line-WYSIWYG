@@ -146,7 +146,15 @@ class acf_field_single_line_wysiwyg extends acf_field {
 		
 		// filter value for editor
 		remove_all_filters( 'acf_the_editor_content' );
-		add_filter('acf_the_editor_content', 'wp_richedit_pre');
+
+    // fix possible deprecation notice
+    global $wp_version;
+    if ( (float)$wp_version >= 4.3 ) {
+      add_filter('acf_the_editor_content', 'format_for_editor');
+    }
+    else {
+      add_filter('acf_the_editor_content', 'wp_richedit_pre');
+    }
 		
 		$field['value'] = apply_filters( 'acf_the_editor_content', $field['value'] );
 		
