@@ -42,5 +42,43 @@ This plugins was created using the [Advanced Custom Fields field type template r
 3. Create a new field via ACF and select the Single Line WYSIWYG type
 4. Please refer to the description for more info regarding the field type settings
 
+### Register field with PHP
+
+This is really handy to register fields with PHP, so here is the example:
+```
+acf_add_local_field_group(array (
+	'key' => 'group_some_title',
+	'title' => 'Some title',
+  'fields' => array (
+    array (
+      'key' => 'field_some_key',
+      'type' => 'single_line_wysiwyg',
+      'label' => 'Short description',
+      'instructions' => 'Only bold style is allowed',
+      'name' => 'some_name',
+      'allow_bold' => 1,
+      'allow_italic' => 0,
+      'allow_link' => 0,
+      'allow_underline' => 0,
+      'allow_strikethrough' => 0
+    ),
+  ),
+	'location' => array (
+		array (
+			array (
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'your_post_type',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'style' => 'default',
+	'label_placement' => 'left',
+	'instruction_placement' => 'label',
+));
+```
+For more info please refer to: https://www.advancedcustomfields.com/resources/register-fields-via-php/
+
 ### Changelog
 Please see `readme.txt` for changelog
