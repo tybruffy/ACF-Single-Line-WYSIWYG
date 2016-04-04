@@ -171,6 +171,16 @@
 			mceInit = acf.apply_filters('wysiwyg_tinymce_settings', mceInit, mceInit.id);
 			
 			
+      // prevent entering new line with ENTER key
+      // based on: http://stackoverflow.com/questions/1831015/disableing-enter-return-key-from-within-tiny-mce
+      mceInit.setup = function (ed) {
+        ed.on('keydown', function(e) {
+          if (e.keyCode == 13) {
+            e.preventDefault();
+          }
+        });
+      };
+
 			// return
 			return mceInit;
 			
